@@ -7,6 +7,7 @@
     <script charset="utf-8" src="static/js/index.js"></script>
     <link rel="stylesheet" href="static/css/index.css" />
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="//necolas.github.io/normalize.css/8.0.1/normalize.css" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -14,8 +15,64 @@
 </head>
 <body>
     <div class="container">
-        <h1>sharecode.at</h1>
-        <p>POST로 /에 title, name, code 포함한 json 형태로 보내주면 됨</p>
+        <div class="row">
+            <h1><a href="/">sharecode.at</a></h1>
+        </div>
+        <div class="row">
+            <h2>Create code</h2>
+            <p>POST로 /에 title, name, code 포함한 json 형태로 보내주면 됨</p>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title">
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+                <label for="code">Code</label>
+                <textarea class="form-control" rows="20" id="code"></textarea>
+            </div>
+            <button class="btn btn-default" type="submit" id="create">Create</button>
+        </div>
+        <div class="row">
+            <h2>Recent codes</h2>
+            {% if codes %}
+            <ul>
+            {% for code in codes %}
+                <li><a href="/{{ code.uid }}">{{ code.title }} @ {{ code.create_date }}</a></li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('button#create').click(function (e) {
+                var title = $('input#title').val();
+                var name = $('input#name').val();
+                var code = $('textarea#code').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        "title": title,
+                        "name": name,
+                        "code": code
+                    }),
+                    success: function(data) {
+                        if (data.error === "") {
+                            window.location.replace(data.result);
+                        } else {
+                            alert(data.error);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

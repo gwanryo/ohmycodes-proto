@@ -43,8 +43,9 @@ def register():
     db.session.add(code)
     db.session.commit()
 
-    return redirect(url_for('main.code', uid=code.uid))
+    return json.dumps({"result": url_for('main.code', uid=code.uid), "error": ""})
 
 @bp.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    codes = Code.query.filter(Code.expire_date >= datetime.now()).order_by(Code.create_date.desc()).limit(5).all()
+    return render_template('index.html', codes=codes)
