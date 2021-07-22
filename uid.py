@@ -7,7 +7,7 @@ DEFAULT_CHARSET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'm', 'n', '
 
 def generate(item=DEFAULT_CHARSET, len=10):
     srand = secrets.SystemRandom()
-    result = srand.sample(item, 10)
+    result = srand.sample(item, len)
     return ''.join(result)
 
 if __name__ == "__main__":
