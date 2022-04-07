@@ -18,3 +18,6 @@ def create_app():
     app.register_blueprint(main.bp)
 
     return app
+
+if __name__ == "__main__":
+    create_app().run(debug=False)
