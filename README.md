@@ -7,7 +7,22 @@ Super simple prototype of sharecode
 
 * Python 3.9
 
-### Installing
+### Install
+#### Docker
+1. Clone this repository
+```bash
+git clone https://github.com/gwanryo/sharecode.git
+```
+
+2. Run make build, then make run
+```bash
+make build
+make run
+```
+
+3. Server will start at 0.0.0.0:5000
+
+#### Manual
 1. Clone this repository
 ```bash
 git clone https://github.com/gwanryo/sharecode.git
@@ -36,3 +51,4 @@ flask db upgrade
 ```bash
 flask run
 ```
+
