@@ -1,5 +1,5 @@
-# sharecode
-Super simple prototype of sharecode
+# ohmycodes
+Super simple prototype of ohmycodes
 
 ## Getting Started
 
@@ -11,7 +11,7 @@ Super simple prototype of sharecode
 #### Docker
 1. Clone this repository
 ```bash
-git clone https://github.com/gwanryo/sharecode.git
+git clone https://github.com/gwanryo/ohmycodes.git
 ```
 
 2. Run make build, then make run
@@ -25,7 +25,7 @@ make run
 #### Manual
 1. Clone this repository
 ```bash
-git clone https://github.com/gwanryo/sharecode.git
+git clone https://github.com/gwanryo/ohmycodes.git
 ```
 
 2. (Optional) Create venv in repository folder
@@ -45,7 +45,7 @@ flask db migrate
 flask db upgrade
 ```
 
-5. Check there is 'sharecode.db' in repository folder
+5. Check there is 'ohmycodes.db' in repository folder
 
 6. Run server
 ```bash
